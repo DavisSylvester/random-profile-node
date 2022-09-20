@@ -1,0 +1,1 @@
+{"version":3,"file":"LastNameRepository.mjs","sourceRoot":"","sources":["../../src/repositories/LastNameRepository.mts"],"names":[],"mappings":"AACA,OAAO,EAAE,cAAc,EAAE,MAAM,sBAAsB,CAAC;AAEtD,MAAM,OAAO,kBAAmB,SAAQ,cAAwB;IAE5D;QACI,KAAK,CAAC,UAAU,CAAC,CAAA;IAErB,CAAC;CACJ"}

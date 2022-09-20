@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typeorm": "typeorm-ts-node-esm",
+    "typeorm:sync": "typeorm-ts-node-esm schema:sync -d ./src/data-source.ts",
+    "start": "ts-node-esm src/index"
   },
   "keywords": [],
   "author": "",

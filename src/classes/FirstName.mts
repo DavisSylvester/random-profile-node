@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
-import { Gender } from "./enums/Gender";
+import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm"
+import { Gender } from "./enums/Gender.mjs";
 
 @Entity()
 export class FirstName {
@@ -10,6 +10,9 @@ export class FirstName {
     @Column({
         length: 30,
     })
+    @Index({
+        unique: true
+    })
     name: string;
 
     @Column({
@@ -19,6 +22,6 @@ export class FirstName {
     })
     gender: Gender;
 
-    @Column("boolean")
-    isActive: boolean;
+    @Column("boolean", {default: true})
+    isActive: boolean = true;
 }
