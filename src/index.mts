@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { AppDataSource } from "./data-source.mjs";
-import { FirstNameSeed } from "./seed/firstNameSeed.mjs";
+// import { FirstNameSeed } from "./seed/firstNameSeed.mjs";
+import { LastNameSeed } from "./seed/lastNameSeed.mjs";
 
 
 export const main = async () => {
@@ -13,7 +14,8 @@ export const main = async () => {
         });
 
         try {
-            new FirstNameSeed().Seed();
+            // new FirstNameSeed().Seed();
+            new LastNameSeed().Seed();
         } catch (error) {
             console.log(error)
         }
