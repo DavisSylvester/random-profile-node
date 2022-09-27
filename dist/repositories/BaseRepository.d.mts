@@ -11,6 +11,7 @@ export declare abstract class BaseRepository<T> implements IRepository<T> {
     get(id?: number | string | null): Promise<T | T[]>;
     getById(id: number | string): Promise<T | null>;
     where(query: where): Promise<T[]>;
+    count(): Promise<number>;
     protected getConnection(): Promise<void>;
 }
 //# sourceMappingURL=BaseRepository.d.mts.map

@@ -1,0 +1,15 @@
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Node Library",
+    "skipFiles": ["<node_internals>/**"],
+    "outFiles": ["dist/**/*.js"],
+    "cwd": "${workspaceRoot}",            
+    "trace": true,
+    "localRoot": "${workspaceFolder}",
+    "runtimeArgs": ["node_modules/.bin/ts-node-esm", "-r"],
+    "args": ["src/index.mts"],
+    "protocol": "inspector",
+    "restart": true,
+    "remoteRoot": "${workspaceFolder}/"
+}

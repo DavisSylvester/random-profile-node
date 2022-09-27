@@ -78,6 +78,16 @@ export abstract class BaseRepository<T> implements IRepository<T> {
         return result;
     }
 
+    public async count(): Promise<number> {
+
+        const result = await this.repository.count();
+
+        // const total = await this.repository.query(`Select count(*) from ${this.repository.metadata.tableName}`);
+        
+        // const result = parseInt(total[0].count);
+        return result;
+    }
+
     protected async getConnection() {
         if (this.connection) {
             return;
