@@ -1,27 +1,30 @@
 import { webcrypto } from 'node:crypto';
+import { rndNumber } from '../interfaces/rndNumber.js';
 
 export class HelperService {
 
-    static getRandomNumber(max: number, min: number = 0) {
+    static getRandomNumber(max: number, min: number = 0): number {
         let count = 0;
-        const tempResult = HelperService.generateRandomNumber(max, min);
+        const tempResult = HelperService.#generateRandomNumber(max, min);
         
         while (tempResult.length === 0) {
             count += 1;
             
-            HelperService.generateRandomNumber(max, min);
-            console.log('count', count);
+            HelperService.#generateRandomNumber(max, min);
+            // console.log('count', count);
 
             if (count > 50000) {
                 // @ts-ignore
                 tempResult.push(51415);
             }
         }
-        // console.log('Random Number: ', tempResult[0])
-        return tempResult[0];
+        // const index = Math.floor(Math.random() * ((tempResult.length - 1) - min) + min);
+        
+        // return tempResult[index]! as number;
+        return tempResult[0]! as number;
     }
 
-    static generateRandomNumber(max: number, min: number = 0) {
+    static #generateRandomNumber(max: number, min: number = 0) {
        const smallIntSize = 255;
        const mediumIntSize = 65535;
        const largeIntSize = 4_294_967_295;
@@ -54,4 +57,17 @@ export class HelperService {
         
         return tempResult;
     }
+
+    static randomNumber(options: rndNumber) {
+
+        const array = webcrypto.getRandomValues(new Uint8Array(1000));
+    
+        const tempResult = array.filter((x: number) => x >= options.min && x <= options.max);
+    
+        // @ts-ignore
+        const result = tempResult.slice(0, options.total) as number[];
+    
+        return result;
+    };
+    
 }

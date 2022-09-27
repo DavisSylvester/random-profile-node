@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "typeorm": "typeorm-ts-node-esm",
     "typeorm:sync": "typeorm-ts-node-esm schema:sync -d ./src/data-source.ts",
-    "start": "ts-node-esm src/index"
+    "start": "ts-node-esm src/index",
+    "dev": "cls && tsc && node dist/index.mjs"
   },
   "keywords": [],
   "author": "",
