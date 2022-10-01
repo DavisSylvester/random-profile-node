@@ -18,7 +18,7 @@ export const main = async () => {
         // console.log('first name: total: ', total);
         // const total2 = await new LastNameRepository().count()
         // console.log('last name: total: ', total2);
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 1000; i++) {
             // console.log(`${i}. ${HelperService.getRandomNumber(3000)}`);
             // const name = await new ProfileContactService().getRandomFullName();
             const profileContactService = new ProfileContactService();

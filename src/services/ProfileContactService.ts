@@ -52,13 +52,17 @@ export class ProfileContactService extends Baseservice {
     public getFirstName() {
         const index = HelperService.randomNumber({ min: 0, max: this.listOfFirstNames!.length, total: 1 });
 
-        return this.listOfFirstNames![index[0]!]?.name!;
+        const firstName: string = this.listOfFirstNames![index[0] as number]?.name || this.getFirstName();
+
+         return firstName;
     };
 
     public getLastName() {
-        const index = HelperService.randomNumber({ min: 0, max: this.listOfLastNames!.length, total: 1 });
+        const index = HelperService.randomNumber({ min: 0, max: this.listOfLastNames.length, total: 1 });
+        
+        const lastName: string = this._listOfLastNames[index[0] as number]?.name || this.getLastName();
 
-        return this._listOfLastNames[index[0]!]?.name!;
+        return lastName;
     };
 
     public getPhoneNumber(formattted: boolean = false) {
@@ -86,6 +90,9 @@ export class ProfileContactService extends Baseservice {
         const phone = this.getPhoneNumber(phoneNumberFormatted);
         const email = this.getEmail(firstName!, lastName!, domain);
 
+        if (!firstName || !lastName) {
+            throw new Error('Error getting Name');
+        }
         return {
             firstName,
             lastName,
