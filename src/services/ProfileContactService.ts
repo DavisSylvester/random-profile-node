@@ -93,6 +93,7 @@ export class ProfileContactService extends Baseservice {
         if (!firstName || !lastName) {
             throw new Error('Error getting Name');
         }
+        
         return {
             firstName,
             lastName,
