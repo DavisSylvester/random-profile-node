@@ -18,14 +18,14 @@ export const main = async () => {
         // console.log('first name: total: ', total);
         // const total2 = await new LastNameRepository().count()
         // console.log('last name: total: ', total2);
-        for (let i = 1; i <= 1000; i++) {
+        for (let i = 1; i <= 5000; i++) {
             // console.log(`${i}. ${HelperService.getRandomNumber(3000)}`);
             // const name = await new ProfileContactService().getRandomFullName();
             const profileContactService = new ProfileContactService();
             await profileContactService.init();
             //console.log(profileContactService._listOfFirstNames);
             const name = await profileContactService.getProfile();
-            console.log(`${i}.  Name: ${JSON.stringify(name, null, 5)}`);
+            console.log(`${i}.  Contact: ${JSON.stringify(name, null, 5)}`);
         }
         // const name = await new ProfileContactService().getRandomFullName();
     }
