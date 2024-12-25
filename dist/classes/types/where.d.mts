@@ -1,4 +1,4 @@
-export declare type where = {
+export type where = {
     where: [
         {
             [name: string]: string | number;
