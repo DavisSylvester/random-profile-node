@@ -1,6 +1,7 @@
 // import { FirstName } from "../classes/index.mjs";
 import { FirstName } from "../classes/FirstName.mjs";
 import { LastName } from "../classes/LastName.mjs";
+import { RandomProfileSingleRepository } from "../repositories/RandomProfileSingleRepository.mjs";
 import { Baseservice } from "./BaseService.js";
 import { HelperService } from "./HelperService.js";
 
@@ -19,7 +20,7 @@ export class ProfileContactService extends Baseservice {
         return this._listOfLastNames;
     }
 
-    constructor() {
+    constructor(private randomProfileRepository: RandomProfileSingleRepository) {
         super();
 
     }
@@ -27,8 +28,8 @@ export class ProfileContactService extends Baseservice {
 
     public async init() {
 
-        this._listOfFirstNames = await this.firstNameRepository.get() as FirstName[];
-        this._listOfLastNames = await this.lastNameRepository.get() as LastName[];
+        this._listOfFirstNames = await this.randomProfileRepository.getListOfFirstNames() as FirstName[];
+        this._listOfLastNames = await this.randomProfileRepository.getListOfLastNames() as LastName[];
     }
 
     public async getRandomFullName() {

@@ -6,11 +6,12 @@ import "reflect-metadata";
 // import { LastNameSeed } from "./seed/lastNameSeed.mjs";
 // import { HelperService } from "./services/HelperService.js";
 // import { ProfileContactService } from "./services/ProfileContactService.js";
-import { DbFirstNameSeed } from "./seed/first-name-seed.mjs";
+// import { DbFirstNameSeed } from "./seed/first-name-seed.mjs";
 // import { MongoClient } from "typeorm";
 import { MongoClient as mongoClient } from "mongodb";
 import { RandomProfileSingleRepository } from "./repositories/RandomProfileSingleRepository.mjs";
-import { DbLastNameSeed } from "./seed/last-name-seed.mjs";
+import { ProfileContactService } from "./services/ProfileContactService.js";
+// import { DbLastNameSeed } from "./seed/last-name-seed.mjs";
 // export const main = async () => {
 //     // await AppDataSource.initialize();      
 //         // AppDataSource.entityMetadatas.forEach((x) => {
@@ -41,10 +42,15 @@ export const main = async () => {
     let client;
     try {
         client = await new mongoClient("mongodb://localhost:9898").connect();
-        const db = new DbFirstNameSeed(new RandomProfileSingleRepository(client, "random-profile", "data"));
-        const lastNameSeed = new DbLastNameSeed(new RandomProfileSingleRepository(client, "random-profile", "data"));
-        await db.Seed();
-        await lastNameSeed.Seed();
+        const repo = new RandomProfileSingleRepository(client, "random-profile", "data");
+        // const db = new DbFirstNameSeed(repo);
+        // const lastNameSeed = new DbLastNameSeed(repo);
+        // await db.Seed();
+        // await lastNameSeed.Seed();
+        const service = new ProfileContactService(repo);
+        await service.init();
+        const result = await service.getProfile(true);
+        console.log(result);
         client.close();
     }
     catch (err) {
